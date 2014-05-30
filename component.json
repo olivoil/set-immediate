@@ -1,0 +1,5 @@
+{
+  "name": "setImmediate",
+  "main": "setImmediate.js",
+  "scripts": ["setImmediate.js"]
+}
