@@ -1,4 +1,4 @@
-(function (global, undefined) {
+;(function (global, undefined) {
     "use strict";
 
     if (global.setImmediate) {
@@ -173,4 +173,4 @@
 
     exports = module.exports = setImmediate;
     exports.clearImmediate = clearImmediate;
-}(typeof window == 'undefined' ? this : window);
+})(typeof window == 'undefined' ? this : window);
