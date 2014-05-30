@@ -2,8 +2,13 @@
     "use strict";
 
     if (global.setImmediate) {
-        module.exports = global.setImmediate;
-        return;
+      module.exports = global.setImmediate;
+      return;
+    }
+
+    if (global.self && global.self.setImmediate){
+      module.exports = global.self.setImmediate;
+      return;
     }
 
     var nextHandle = 1; // Spec says greater than zero
