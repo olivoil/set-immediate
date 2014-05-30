@@ -1,6 +1,6 @@
 {
   "name": "setImmediate.js",
-  "version": "0.1.5",
+  "version": "1.0.3",
   "main": "setImmediate.js",
   "scripts": ["setImmediate.js"]
 }
