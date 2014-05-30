@@ -2,6 +2,7 @@
     "use strict";
 
     if (global.setImmediate) {
+        module.exports = global.setImmediate;
         return;
     }
 
@@ -145,8 +146,8 @@
     }
 
     // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
-    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
-    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
+    // var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
+    // attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
 
     // Don't get fooled by e.g. browserify environments.
     if ({}.toString.call(global.process) === "[object process]") {
@@ -170,6 +171,6 @@
         installSetTimeoutImplementation();
     }
 
-    attachTo.setImmediate = setImmediate;
-    attachTo.clearImmediate = clearImmediate;
+    exports = module.exports = setImmediate;
+    exports.clearImmediate = clearImmediate;
 }(typeof window == 'undefined' ? this : window);
