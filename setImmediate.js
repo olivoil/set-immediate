@@ -1,13 +1,10 @@
-;(function (global, undefined) {
+;(function (root, undefined) {
     "use strict";
+
+    var global = root && root.self ? root.self : root;
 
     if (global.setImmediate) {
       module.exports = global.setImmediate;
-      return;
-    }
-
-    if (global.self && global.self.setImmediate){
-      module.exports = global.self.setImmediate;
       return;
     }
 
