@@ -1,7 +1,7 @@
 ;(function (root, undefined) {
     "use strict";
 
-    var global = root && root.self ? root.self : root;
+    var global = root && root.self && root.self.window ? root.self : root;
 
     if (global.setImmediate) {
       module.exports = global.setImmediate;
