@@ -87,7 +87,7 @@
 
         var messagePrefix = "setImmediate$" + Math.random() + "$";
         var onGlobalMessage = function(event) {
-            if (event.source === global &&
+            if ((event.source === global || event.source.location.href === global.location.href) &&
                 typeof event.data === "string" &&
                 event.data.indexOf(messagePrefix) === 0) {
                 runIfPresent(+event.data.slice(messagePrefix.length));
@@ -156,9 +156,9 @@
         // For Node.js before 0.9
         installNextTickImplementation();
 
-    // } else if (canUsePostMessage()) {
-    //     // For non-IE10 modern browsers
-    //     installPostMessageImplementation();
+     } else if (canUsePostMessage()) {
+         // For non-IE10 modern browsers
+         installPostMessageImplementation();
 
     } else if (global.MessageChannel) {
         // For web workers, where supported
