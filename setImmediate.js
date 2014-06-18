@@ -66,6 +66,9 @@
     }
 
     function canUsePostMessage() {
+        // issues with postMessage in firefox addons (v30.0) *but works in nightly (31.0)*
+        if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) return false;
+
         // The test against `importScripts` prevents this implementation from being installed inside a web worker,
         // where `global.postMessage` means something completely different and can't be used for this purpose.
         if (global.postMessage && !global.importScripts) {
