@@ -87,7 +87,7 @@
 
         var messagePrefix = "setImmediate$" + Math.random() + "$";
         var onGlobalMessage = function(event) {
-            if ((event.source === global || event.source.location.href === global.location.href) &&
+            if ((event.source === global || event.origin === global.location.origin) &&
                 typeof event.data === "string" &&
                 event.data.indexOf(messagePrefix) === 0) {
                 runIfPresent(+event.data.slice(messagePrefix.length));
