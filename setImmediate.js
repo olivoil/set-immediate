@@ -66,6 +66,9 @@
     }
 
     function canUsePostMessage() {
+        // issues with postMessage in firefox addons (v30.0) *but works in nightly (31.0)*
+        if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) return false;
+
         // The test against `importScripts` prevents this implementation from being installed inside a web worker,
         // where `global.postMessage` means something completely different and can't be used for this purpose.
         if (global.postMessage && !global.importScripts) {
@@ -87,7 +90,7 @@
 
         var messagePrefix = "setImmediate$" + Math.random() + "$";
         var onGlobalMessage = function(event) {
-            if ((event.source === global || event.source.location.href === global.location.href) &&
+            if ((event.source === global || event.origin === global.location.origin) &&
                 typeof event.data === "string" &&
                 event.data.indexOf(messagePrefix) === 0) {
                 runIfPresent(+event.data.slice(messagePrefix.length));
