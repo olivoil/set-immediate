@@ -93,6 +93,7 @@
             if ((event.source === global || event.origin === global.location.origin) &&
                 typeof event.data === "string" &&
                 event.data.indexOf(messagePrefix) === 0) {
+                event.stopImmediatePropagation();
                 runIfPresent(+event.data.slice(messagePrefix.length));
             }
         };
